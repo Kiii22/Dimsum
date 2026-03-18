@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>TUKUO DIMSUM • Enak Murah Nagih</title>
+  <!-- Font & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #fffaf2; /* warm white touch */
+      color: #1e1e1e;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
+
+    /* mobile-first base */
+    .container {
+      padding: 0 1.25rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+      color: #b11a1a; /* red dominant */
+      position: relative;
+      display: inline-block;
+    }
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: #b11a1a;
+      border-radius: 4px;
+    }
+
+    /* navigation simple */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: white;
+      padding: 0.8rem 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #ffdede;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: #b11a1a;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .logo span {
+      color: #222;
+      font-weight: 500;
+      font-size: 1rem;
+      background: #ffeeee;
+      padding: 0.2rem 0.6rem;
+      border-radius: 30px;
+      margin-left: 6px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #3d3d3d;
+      font-size: 1rem;
+      transition: 0.2s;
+      padding: 0.3rem 0;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #b11a1a;
+      color: #b11a1a;
+    }
+
+    /* buttons & CTA */
+    .btn-primary {
+      background: #b11a1a;
+      color: white;
+      border: none;
+      padding: 1rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 10px 20px rgba(177,26,26,0.25);
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: 2px solid #b11a1a;
+    }
+    .btn-primary i {
+      font-size: 1.2rem;
+    }
+    .btn-primary:active {
+      transform: scale(0.96);
+      background: white;
+      color: #b11a1a;
+    }
+    .btn-wa-float {
+      position: fixed;
+      bottom: 24px;
+      right: 20px;
+      background: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+      z-index: 99;
+      transition: 0.2s;
+      border: 3px solid white;
+    }
+    .btn-wa-float:active {
+      transform: scale(0.9);
+    }
+
+    /* hero */
+    .hero {
+      padding: 1.5rem 0 2rem;
+    }
+    .hero-content {
+      background: linear-gradient(145deg, #fff5f5, white);
+      border-radius: 40px;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 12px 28px rgba(177,26,26,0.08);
+    }
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #b11a1a;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #4a4a4a;
+      margin: 1rem 0 1.6rem;
+    }
+
+    /* menu grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+    .menu-card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.2rem 0.8rem 0.8rem 0.8rem;
+      box-shadow: 0 10px 18px rgba(0,0,0,0.02);
+      border: 1px solid #ffe3e3;
+      transition: 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+    .menu-card:active {
+      background: #fef2f2;
+    }
+    .menu-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: #fee0e0;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b11a1a;
+      font-size: 2.2rem;
+      margin-bottom: 0.7rem;
+    }
+    .menu-name {
+      font-weight: 700;
+      font-size: 1rem;
+      color: #262626;
+      margin: 0 0 0.2rem 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .menu-price {
+      font-weight: 700;
+      color: #b11a1a;
+      font-size: 1.1rem;
+    }
+    .menu-desc {
+      font-size: 0.75rem;
+      color: #6f6f6f;
+      margin: 0.3rem 0 0.3rem;
+    }
+
+    .feature-list, .suasana-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.2rem;
+    }
+    .feature-item {
+      background: white;
+      padding: 0.7rem 1.3rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.02);
+      border: 1px solid #ffd6d6;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .feature-item i {
+      color: #b11a1a;
+    }
+
+    .testimoni-card {
+      background: white;
+      border-radius: 32px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ffe0e0;
+      box-shadow: 0 6px 12px rgba(177,26,26,0.02);
+    }
+    .stars {
+      color: #ffb800;
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+    .testimoni-card p {
+      font-weight: 500;
+    }
+
+    .info-row {
+      background: white;
+      border-radius: 30px;
+      padding: 1.5rem;
+      border: 1px solid #ffd9d9;
+      margin: 1rem 0;
+    }
+    .jam {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #b11a1a;
+      margin: 0.5rem 0 0.2rem;
+    }
+    .catatan {
+      font-size: 0.9rem;
+      color: #5f5f5f;
+      font-style: italic;
+    }
+
+    .btn-wa-order {
+      background: #25D366;
+      color: white;
+      padding: 1.2rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin: 1.2rem 0;
+      border: none;
+      width: 100%;
+      box-shadow: 0 10px 24px rgba(37,211,102,0.3);
+      transition: 0.2s;
+    }
+    .btn-wa-order i {
+      font-size: 1.8rem;
+    }
+    .btn-wa-order:active {
+      background: white;
+      color: #25D366;
+      border: 2px solid #25D366;
+    }
+
+    .lokasi {
+      background: #faecec;
+      border-radius: 30px;
+      padding: 1.2rem 1.5rem;
+      font-weight: 500;
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      margin: 1rem 0 2rem;
+    }
+    .lokasi i {
+      font-size: 2rem;
+      color: #b11a1a;
+    }
+
+    hr {
+      border: 1px solid #ffcdcd;
+      margin: 1.5rem 0;
+    }
+
+    /* footer */
+    .footer-note {
+      text-align: center;
+      padding: 1.8rem 0 3rem;
+      color: #8b8b8b;
+      font-size: 0.9rem;
+    }
+
+    /* subtle animation */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(12px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    section {
+      animation: fadeUp 0.5s ease-out;
+    }
+    .btn-primary, .menu-card, .feature-item {
+      transition: all 0.15s ease;
+    }
+  </style>
+</head>
+<body>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/6281241290820?text=Halo%2C%20saya%20mau%20pesan%20dimsum" class="btn-wa-float" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- NAVIGATION SIMPLE -->
+<div class="nav">
+  <div class="logo">TUKUO <span>dimsum</span></div>
+  <div class="nav-links">
+    <a href="#">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#order">Order</a>
+  </div>
+</div>
+
+<main class="container">
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Dimsum Enak, Murah, dan Bikin Nagih!</h1>
+      <p>Camilan favorit dengan rasa autentik dan kualitas terjamin</p>
+      <a href="#order" class="btn-primary"><i class="fas fa-utensils"></i> Pesan Sekarang</a>
+    </div>
+  </section>
+
+  <!-- TENTANG / ABOUT -->
+  <section>
+    <h2>Tentang</h2>
+    <div style="background: white; border-radius: 28px; padding: 1.5rem; border:1px solid #ffdfdf;">
+      <p style="margin-bottom: 0.8rem; font-weight: 500;">🍥 <strong>TUKUO DIMSUM</strong> menyediakan berbagai varian dimsum dengan bahan berkualitas. Rasa autentik, fresh, dan dibuat setiap hari. Cocok untuk semua kalangan, terutama pelajar dan keluarga.</p>
+      <p style="color:#b11a1a; font-weight: 600;">✓ Bahan premium  ✓ Halal  ✓ Tiap hari baru</p>
+    </div>
+  </section>
+
+  <!-- MENU DIMSUM CARD GRID -->
+  <section id="menu">
+    <h2>Menu Spesial</h2>
+    <p class="menu-desc" style="font-size: 1rem; margin-bottom: 0.2rem;">Tekstur lembut, juicy, dan kaya rasa dengan pilihan topping unik</p>
+    
+    <div class="menu-grid">
+      <!-- diulang manual 12 item sesuai prompt, semua Rp 3500 -->
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-drumstick-bite"></i></div><div class="menu-name">Siomay Ayam Ori</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-hotdog"></i></div><div class="menu-name">Siomay Sosis</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-pepper-hot"></i></div><div class="menu-name">Ayam Pedas</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-wonton"></i></div><div class="menu-name">Gyoza</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-egg"></i></div><div class="menu-name">Ekado</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-fish"></i></div><div class="menu-name">Nori Roll Tuna</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-shrimp"></i></div><div class="menu-name">Tahu Seafood</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-bowl-food"></i></div><div class="menu-name">Keicak</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-pepper"></i></div><div class="menu-name">Siomay Blackpaper</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-cheese"></i></div><div class="menu-name">Siomay Ayam Moza</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-prawn"></i></div><div class="menu-name">Swikiaw Udang</div><div class="menu-price">Rp3.500</div></div>
+      <div class="menu-card"><div class="menu-img"><i class="fas fa-chilli"></i></div><div class="menu-name">Bolado</div><div class="menu-price">Rp3.500</div></div>
+    </div>
+    <p style="text-align: right; font-weight: 500; color:#b11a1a; margin-top: 0.2rem;">+12 varian lainnya</p>
+  </section>
+
+  <!-- FITUR KEUNGGULAN -->
+  <section>
+    <h2>Keunggulan</h2>
+    <div class="feature-list">
+      <span class="feature-item"><i class="fas fa-bolt"></i> Cepat saji</span>
+      <span class="feature-item"><i class="fas fa-shopping-bag"></i> Bisa bawa pulang</span>
+      <span class="feature-item"><i class="fas fa-wallet"></i> Harga terjangkau</span>
+      <span class="feature-item"><i class="fas fa-crown"></i> Rasa premium</span>
+      <span class="feature-item"><i class="fas fa-star"></i> Banyak testimoni</span>
+    </div>
+  </section>
+
+  <!-- SUASANA -->
+  <section>
+    <h2>Suasana</h2>
+    <div class="suasana-list">
+      <span class="feature-item"><i class="fas fa-couch"></i> Nyaman</span>
+      <span class="feature-item"><i class="fas fa-mug-hot"></i> Santai</span>
+      <span class="feature-item"><i class="fas fa-spa"></i> Tenang</span>
+      <span class="feature-item"><i class="fas fa-child"></i> Cocok anak-anak</span>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section>
+    <h2>Testimoni</h2>
+    <div class="testimoni-card">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>"Dimsumnya enak banget, harga murah tapi rasa bintang 5!"</p>
+    </div>
+    <div class="testimoni-card">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>"Varian banyak, jadi gak bosen!"</p>
+    </div>
+    <div class="testimoni-card">
+      <div class="stars">⭐⭐⭐⭐⭐</div>
+      <p>"Wajib coba sih ini!"</p>
+    </div>
+  </section>
+
+  <!-- JAM OPERASIONAL + catatan -->
+  <section>
+    <h2>Jam operasional</h2>
+    <div class="info-row">
+      <i class="fas fa-clock" style="color:#b11a1a; font-size: 1.8rem; margin-right: 8px;"></i>
+      <div style="display: inline-block;">
+        <span style="font-weight: 600; font-size: 1.3rem;">Setiap hari</span>
+        <div class="jam">15.30 – 21.30</div>
+        <div class="catatan"><i class="fas fa-info-circle"></i> Jam operasional dapat berubah saat hari libur</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAK & ORDER (dengan tombol WA) -->
+  <section id="order">
+    <h2>Kontak & Order</h2>
+    <div style="background: white; border-radius: 30px; padding: 1.5rem; border:1px solid #ffd2d2;">
+      <p style="font-weight: 600; font-size: 1.2rem;"><i class="fab fa-whatsapp" style="color:#25D366;"></i> 0812-4129-0820</p>
+      <a href="https://wa.me/6281241290820?text=Halo%2C%20saya%20mau%20pesan%20dimsum" target="_blank" class="btn-wa-order">
+        <i class="fab fa-whatsapp"></i> Chat Pesan Otomatis
+      </a>
+      <p style="font-size:0.9rem; color:gray;">Klik, langsung kirim "Halo, saya mau pesan dimsum"</p>
+    </div>
+  </section>
+
+  <!-- LOKASI -->
+  <section>
+    <h2>Lokasi</h2>
+    <div class="lokasi">
+      <i class="fas fa-map-pin"></i>
+      <span>Batu Tengah, Baturetno, Wonogiri, Jawa Tengah</span>
+    </div>
+    <!-- dummy map / tautan -->
+    <div style="background:#f0dcdc; border-radius: 30px; height: 100px; display: flex; align-items: center; justify-content: center; color:#b11a1a; border: 1px solid #ffbaba;">
+      <i class="fas fa-map-marked-alt"></i>  📍 TUKUO DIMSUM (klik buka peta)
+    </div>
+  </section>
+
+  <!-- footer sederhana -->
+  <div class="footer-note">
+    <i class="fas fa-heart" style="color:#b11a1a;"></i> dimsum tiap hari • TUKUO DIMSUM
+  </div>
+</main>
+
+<!-- smooth internal navigation (Home tidak perlu karena sudah hero) -->
+<script>
+  // memberikan sedikit interaksi/animasi ringan: highlight navigasi
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      // tidak perlu prevent default karena id nya ada
+    });
+  });
+</script>
+
+</body>
+</html>
